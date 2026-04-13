@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Lyrics Game | Grace VandenAkker</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #0f3460, #533483);
+            min-height: 100vh;
+            color: white;
+        }
+
+        .topnav {
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 15px 30px;
+            display: flex;
+            gap: 25px;
+        }
+
+        .topnav a {
+            color: #a8d8ea;
+            text-decoration: none;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: color 0.2s;
+        }
+
+        .topnav a:hover {
+            color: #ffffff;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 50px 20px 30px 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+        }
+
+        .hero p {
+            color: #a8d8ea;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        .game-container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .score-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 14px 24px;
+            margin-bottom: 25px;
+            font-size: 1rem;
+        }
+
+        .score-bar span {
+            color: #a8d8ea;
+            font-weight: bold;
+        }
+
+        .score-bar .score-num {
+            font-size: 1.4rem;
+            color: #ffffff;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 16px;
+            padding: 35px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .question-num {
+            font-size: 0.85rem;
+            color: #a8d8ea;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .lyrics {
+            font-size: 1.25rem;
+            font-style: italic;
+            line-height: 1.8;
+            color: #ffffff;
+            border-left: 4px solid #a8d8ea;
+            padding-left: 20px;
+            margin-bottom: 30px;
+        }
+
+        .hint {
+            font-size: 0.9rem;
+            color: #a8d8ea;
+            margin-bottom: 20px;
+            background: rgba(168, 216, 234, 0.1);
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+
+        .hint span {
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .option-btn {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 16px 12px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            background: rgba(168, 216, 234, 0.25);
+            border-color: #a8d8ea;
+            transform: translateY(-2px);
+        }
+
+        .option-btn.correct {
+            background: rgba(72, 199, 142, 0.35);
+            border-color: #48c78e;
+            color: #ffffff;
+        }
+
+        .option-btn.wrong {
+            background: rgba(241, 70, 104, 0.35);
+            border-color: #f14668;
+            color: #ffffff;
+        }
+
+        .option-btn:disabled {
+            cursor: not-allowed;
+        }
+
+        .feedback {
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+            min-height: 30px;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .feedback.correct {
+            color: #48c78e;
+            background: rgba(72, 199, 142, 0.1);
+        }
+
+        .feedback.wrong {
+            color: #f14668;
+            background: rgba(241, 70, 104, 0.1);
+        }
+
+        .next-btn {
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            padding: 16px;
+            background: #a8d8ea;
+            color: #1a1a2e;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: none;
+        }
+
+        .next-btn:hover {
+            background: #ffffff;
+        }
+
+        .results-card {
+            text-align: center;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 16px;
+            padding: 50px 35px;
+            display: none;
+        }
+
+        .results-card h2 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .final-score {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #a8d8ea;
+            margin: 20px 0;
+        }
+
+        .results-card p {
+            font-size: 1.1rem;
+            color: #a8d8ea;
+            margin-bottom: 30px;
+        }
+
+        .restart-btn {
+            background: #a8d8ea;
+            color: #1a1a2e;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .restart-btn:hover {
+            background: #ffffff;
+        }
+
+        .progress-bar-wrap {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            height: 8px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: #a8d8ea;
+            border-radius: 10px;
+            transition: width 0.4s ease;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <div class="topnav">
+        <a href="index.html">Home</a>
+        <a href="resume.html">Résumé</a>
+        <a href="scratch.html">Music</a>
+        <a href="app.html">Lyrics Game</a>
+    </div>
+
+    <!-- Hero -->
+    <div class="hero">
+        <h1>🎵 Guess That Song!</h1>
+        <p>Read the lyrics. Pick the right artist and song. How well do you know your pop music?</p>
+    </div>
+
+    <!-- Game -->
+    <div class="game-container">
+
+        <!-- Score Bar -->
+        <div class="score-bar">
+            <div>Score: <span class="score-num" id="score">0</span></div>
+            <div>Question: <span class="score-num" id="q-counter">1 / 10</span></div>
+            <div>Streak: <span class="score-num" id="streak">🔥 0</span></div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-bar-wrap">
+            <div class="progress-bar-fill" id="progress-bar" style="width: 10%;"></div>
+        </div>
+
+        <!-- Question Card -->
+        <div class="card" id="question-card">
+            <div class="question-num" id="question-num">Question 1 of 10</div>
+            <div class="lyrics" id="lyrics-text">Loading...</div>
+            <div class="hint">🎤 Hint: <span id="hint-text">...</span></div>
+            <div class="options-grid" id="options-grid"></div>
+            <div class="feedback" id="feedback"></div>

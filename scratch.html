@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Music | Grace VandenAkker</title>
+    <link rel="stylesheet" href="css/scratch.css" />
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <div class="topnav">
+        <a href="index.html">Home</a>
+        <a href="resume.html">Résumé</a>
+        <a href="scratch.html">Music</a>
+        <a href="app.html">Lyrics Game</a>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>My Music World</h1>
+        <p>A personal deep dive into the songs, artists, and moments that define a generation.</p>
+        <a href="#genres" class="hero-btn">Explore Below</a>
+    </div>
+
+    <!-- On-page anchor target -->
+    <a name="genres"></a>
+
+    <!-- Genres Section -->
+    <div class="section" id="genres-section">
+        <h2 class="section-title">Genres I Love</h2>
+        <p class="section-subtitle">Music hits different depending on the mood. Here's my breakdown:</p>
+
+        <!-- REQUIREMENT: Ordered list with embedded unordered lists -->
+        <ol class="genre-list">
+            <li>
+                <strong>Pop</strong>
+                <ul>
+                    <li>Catchy hooks and relatable lyrics</li>
+                    <li>Artists like Taylor Swift, Olivia Rodrigo, Harry Styles</li>
+                </ul>
+            </li>
+            <li>
+                <strong>R&B / Soul</strong>
+                <ul>
+                    <li>Smooth production and emotional depth</li>
+                    <li>Artists like SZA, Frank Ocean, Beyoncé</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Indie / Alternative</strong>
+                <ul>
+                    <li>Unique sound and authentic storytelling</li>
+                    <li>Artists like Phoebe Bridgers, Arctic Monkeys, Hozier</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Hip-Hop</strong>
+                <ul>
+                    <li>Wordplay, rhythm, and cultural commentary</li>
+                    <li>Artists like Kendrick Lamar, J. Cole, Drake</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <!-- Image Section -->
+    <div class="section dark-section">
+        <h2 class="section-title light">Concerts & Vibes</h2>
+        <p class="section-subtitle light">There's nothing like live music. Here are some iconic moments.</p>
+        <div class="image-grid">
+            <div class="img-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/191018_Taylor_Swift_reputation_Stadium_Tour.jpg/800px-191018_Taylor_Swift_reputation_Stadium_Tour.jpg"
+                    alt="Taylor Swift concert" />
+                <p>Taylor Swift — Reputation Tour</p>
+            </div>
+            <div class="img-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Beyonce_-_The_Formation_World_Tour%2C_at_Croke_Park%2C_Dublin_%2827236915843%29.jpg/800px-Beyonce_-_The_Formation_World_Tour%2C_at_Croke_Park%2C_Dublin_%2827236915843%29.jpg"
+                    alt="Beyonce concert" />
+                <p>Beyoncé — Formation World Tour</p>
+            </div>
+            <div class="img-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Harry_Styles_at_the_2019_Met_Gala.jpg/440px-Harry_Styles_at_the_2019_Met_Gala.jpg"
+                    alt="Harry Styles" />
+                <p>Harry Styles — Love on Tour</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- YouTube Video Section -->
+    <div class="section" id="video-section">
+        <h2 class="section-title">A Song That Defines the Era</h2>
+        <p class="section-subtitle">This track captures everything great about 2010s-2020s pop.</p>
+        <div class="video-wrapper">
+            <iframe
+                width="760"
+                height="430"
+                src="https://www.youtube.com/embed/nfWlot6h_JM"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+
+    <!-- Tableau Section -->
+    <div class="section dark-section" id="tableau-section">
+        <h2 class="section-title light">Music By the Numbers</h2>
+        <p class="section-subtitle light">Interactive data on global music streaming trends.</p>
+        <div class="tableau-wrapper">
+            <div class='tableauPlaceholder' id='viz2' style='position: relative;'>
+                <noscript>
+                    <a href='#'>
+                        <img alt='Music Streaming Data' src='https://public.tableau.com/static/images/Sp/SpotifyDashboard_16829996812210/SpotifyDashboard/1_rss.png' style='border: none' />
+                    </a>
+                </noscript>
+                <object class='tableauViz' style='display:none;'>
+                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                    <param name='embed_code_version' value='3' />
+                    <param name='site_root' value='' />
+                    <param name='name' value='SpotifyDashboard_16829996812210/SpotifyDashboard' />
+                    <param name='tabs' value='no' />
+                    <param name='toolbar' value='yes' />
+                    <param name='animate_transition' value='yes' />
+                    <param name='display_static_image' value='yes' />
+                    <param name='display_spinner' value='yes' />
+                    <param name='display_overlay' value='yes' />
+                    <param name='display_count' value='yes' />
+                </object>
+            </div>
+            <script type='text/javascript'>
+                var divElement2 = document.getElementById('viz2');
+                var vizElement2 = divElement2.getElementsByTagName('object')[0];
+                vizElement2.style.width = '100%';
+                vizElement2.style.height = '600px';
+                var scriptElement2 = document.createElement('script');
+                scriptElement2.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+                vizElement2.parentNode.insertBefore(scriptElement2, vizElement2);
+            </script>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© 2025 Grace VandenAkker &nbsp;|&nbsp; <a href="index.html">Back to Home</a></p>
+    </div>
+
+</body>
+</html>
