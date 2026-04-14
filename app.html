@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Lyrics Game | Grace VandenAkker</title>
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
     <style>
         * {
             box-sizing: border-box;
@@ -13,14 +14,14 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Merriweather Sans', sans-serif;
             background: linear-gradient(135deg, #1a1a2e, #0f3460, #533483);
             min-height: 100vh;
             color: white;
         }
 
         .topnav {
-            background-color: rgba(0, 0, 0, 0.4);
+            background-color: rgba(0, 0, 0, 0.3);
             padding: 15px 30px;
             display: flex;
             gap: 25px;
@@ -38,129 +39,124 @@
             color: #ffffff;
         }
 
-        .hero {
-            text-align: center;
-            padding: 50px 20px 30px 20px;
-        }
-
-        .hero h1 {
-            font-size: 2.8rem;
-            font-weight: 900;
-            letter-spacing: 2px;
-            color: #ffffff;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.4);
-        }
-
-        .hero p {
-            color: #a8d8ea;
-            font-size: 1.1rem;
-            margin-top: 10px;
-        }
-
         .game-container {
-            max-width: 720px;
-            margin: 0 auto;
+            max-width: 750px;
+            margin: 50px auto;
             padding: 20px;
         }
 
-        .score-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(255,255,255,0.1);
-            border-radius: 12px;
-            padding: 14px 24px;
-            margin-bottom: 25px;
+        .game-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .game-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .game-header p {
+            color: #a8d8ea;
             font-size: 1rem;
         }
 
-        .score-bar span {
-            color: #a8d8ea;
-            font-weight: bold;
+        .progress-bar-container {
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            height: 10px;
+            margin-bottom: 30px;
+            overflow: hidden;
         }
 
-        .score-bar .score-num {
-            font-size: 1.4rem;
-            color: #ffffff;
+        .progress-bar {
+            background-color: #a8d8ea;
+            height: 100%;
+            border-radius: 20px;
+            transition: width 0.4s ease;
+        }
+
+        .score-display {
+            text-align: center;
+            font-size: 1rem;
+            color: #a8d8ea;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255,255,255,0.15);
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
             border-radius: 16px;
             padding: 35px;
-            margin-bottom: 20px;
-            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255,255,255,0.15);
         }
 
-        .question-num {
+        .question-number {
             font-size: 0.85rem;
             color: #a8d8ea;
-            letter-spacing: 2px;
             text-transform: uppercase;
+            letter-spacing: 2px;
             margin-bottom: 15px;
         }
 
-        .lyrics {
-            font-size: 1.25rem;
-            font-style: italic;
-            line-height: 1.8;
-            color: #ffffff;
+        .lyrics-box {
+            background-color: rgba(0, 0, 0, 0.25);
             border-left: 4px solid #a8d8ea;
-            padding-left: 20px;
-            margin-bottom: 30px;
-        }
-
-        .hint {
-            font-size: 0.9rem;
-            color: #a8d8ea;
-            margin-bottom: 20px;
-            background: rgba(168, 216, 234, 0.1);
-            padding: 10px 15px;
             border-radius: 8px;
+            padding: 20px 25px;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            font-style: italic;
+            color: #f0f0f0;
         }
 
-        .hint span {
-            font-weight: bold;
-            color: #ffffff;
+        .question-text {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            color: #a8d8ea;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .options-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
 
         .option-btn {
-            background: rgba(255,255,255,0.1);
-            border: 2px solid rgba(255,255,255,0.2);
+            background-color: rgba(255, 255, 255, 0.1);
             color: white;
-            padding: 16px 12px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
             border-radius: 10px;
+            padding: 15px 20px;
             font-size: 0.95rem;
+            font-family: 'Merriweather Sans', sans-serif;
             cursor: pointer;
             transition: all 0.2s;
-            text-align: center;
-            line-height: 1.3;
+            text-align: left;
         }
 
         .option-btn:hover:not(:disabled) {
-            background: rgba(168, 216, 234, 0.25);
+            background-color: rgba(168, 216, 234, 0.2);
             border-color: #a8d8ea;
             transform: translateY(-2px);
         }
 
         .option-btn.correct {
-            background: rgba(72, 199, 142, 0.35);
-            border-color: #48c78e;
-            color: #ffffff;
+            background-color: rgba(76, 175, 80, 0.4);
+            border-color: #4caf50;
+            color: white;
         }
 
         .option-btn.wrong {
-            background: rgba(241, 70, 104, 0.35);
-            border-color: #f14668;
-            color: #ffffff;
+            background-color: rgba(244, 67, 54, 0.4);
+            border-color: #f44336;
+            color: white;
         }
 
         .option-btn:disabled {
@@ -169,100 +165,113 @@
 
         .feedback {
             text-align: center;
-            font-size: 1.1rem;
+            font-size: 1rem;
+            min-height: 28px;
+            margin-bottom: 10px;
             font-weight: bold;
-            min-height: 30px;
-            margin-top: 15px;
-            padding: 10px;
-            border-radius: 8px;
         }
 
         .feedback.correct {
-            color: #48c78e;
-            background: rgba(72, 199, 142, 0.1);
+            color: #4caf50;
         }
 
         .feedback.wrong {
-            color: #f14668;
-            background: rgba(241, 70, 104, 0.1);
+            color: #f44336;
         }
 
         .next-btn {
             display: block;
             width: 100%;
-            margin-top: 20px;
-            padding: 16px;
-            background: #a8d8ea;
+            background-color: #a8d8ea;
             color: #1a1a2e;
             border: none;
             border-radius: 10px;
-            font-size: 1.1rem;
+            padding: 15px;
+            font-size: 1rem;
+            font-family: 'Merriweather Sans', sans-serif;
             font-weight: bold;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: background-color 0.2s;
+            margin-top: 15px;
             display: none;
         }
 
         .next-btn:hover {
-            background: #ffffff;
+            background-color: #ffffff;
         }
 
-        .results-card {
+        /* Results Screen */
+        .results-container {
             text-align: center;
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 16px;
-            padding: 50px 35px;
             display: none;
         }
 
-        .results-card h2 {
-            font-size: 2.2rem;
-            margin-bottom: 10px;
+        .results-container h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
         }
 
         .final-score {
             font-size: 4rem;
-            font-weight: 900;
+            font-weight: 700;
             color: #a8d8ea;
             margin: 20px 0;
         }
 
-        .results-card p {
+        .score-message {
             font-size: 1.1rem;
             color: #a8d8ea;
             margin-bottom: 30px;
         }
 
         .restart-btn {
-            background: #a8d8ea;
+            background-color: #a8d8ea;
             color: #1a1a2e;
             border: none;
-            padding: 16px 40px;
             border-radius: 10px;
-            font-size: 1.1rem;
+            padding: 15px 40px;
+            font-size: 1rem;
+            font-family: 'Merriweather Sans', sans-serif;
             font-weight: bold;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: background-color 0.2s;
         }
 
         .restart-btn:hover {
-            background: #ffffff;
+            background-color: #ffffff;
         }
 
-        .progress-bar-wrap {
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-            height: 8px;
-            margin-bottom: 25px;
-            overflow: hidden;
+        .start-screen {
+            text-align: center;
         }
 
-        .progress-bar-fill {
-            height: 100%;
-            background: #a8d8ea;
+        .start-screen h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #a8d8ea;
+        }
+
+        .start-screen p {
+            color: #cccccc;
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .start-btn {
+            background-color: #a8d8ea;
+            color: #1a1a2e;
+            border: none;
             border-radius: 10px;
-            transition: width 0.4s ease;
+            padding: 15px 50px;
+            font-size: 1.1rem;
+            font-family: 'Merriweather Sans', sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .start-btn:hover {
+            background-color: #ffffff;
         }
     </style>
 </head>
@@ -277,31 +286,39 @@
         <a href="app.html">Lyrics Game</a>
     </div>
 
-    <!-- Hero -->
-    <div class="hero">
-        <h1>🎵 Guess That Song!</h1>
-        <p>Read the lyrics. Pick the right artist and song. How well do you know your pop music?</p>
-    </div>
-
-    <!-- Game -->
     <div class="game-container">
 
-        <!-- Score Bar -->
-        <div class="score-bar">
-            <div>Score: <span class="score-num" id="score">0</span></div>
-            <div>Question: <span class="score-num" id="q-counter">1 / 10</span></div>
-            <div>Streak: <span class="score-num" id="streak">🔥 0</span></div>
+        <div class="game-header">
+            <h1>🎵 Guess That Song</h1>
+            <p>Can you name the song from just a few lyrics?</p>
         </div>
 
-        <!-- Progress Bar -->
-        <div class="progress-bar-wrap">
-            <div class="progress-bar-fill" id="progress-bar" style="width: 10%;"></div>
+        <!-- Start Screen -->
+        <div class="card" id="start-screen">
+            <div class="start-screen">
+                <h2>Welcome to Guess That Song!</h2>
+                <p>You'll be shown a snippet of lyrics from a popular 2010s-2020s pop hit.<br>
+                Choose the correct song title from 4 options.<br>
+                10 rounds — how many can you get right?</p>
+                <button class="start-btn" onclick="startGame()">Let's Play!</button>
+            </div>
         </div>
 
-        <!-- Question Card -->
-        <div class="card" id="question-card">
-            <div class="question-num" id="question-num">Question 1 of 10</div>
-            <div class="lyrics" id="lyrics-text">Loading...</div>
-            <div class="hint">🎤 Hint: <span id="hint-text">...</span></div>
-            <div class="options-grid" id="options-grid"></div>
-            <div class="feedback" id="feedback"></div>
+        <!-- Game Screen -->
+        <div id="game-screen" style="display:none;">
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <div class="score-display" id="score-display">Score: 0 / 10</div>
+            <div class="card">
+                <div class="question-number" id="question-number">Question 1 of 10</div>
+                <div class="lyrics-box" id="lyrics-box"></div>
+                <div class="question-text">Which song are these lyrics from?</div>
+                <div class="options-grid" id="options-grid"></div>
+                <div class="feedback" id="feedback"></div>
+                <button class="next-btn" id="next-btn" onclick="nextQuestion()">Next →</button>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div class="card" id="results-screen" style="display:none;">
