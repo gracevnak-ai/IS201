@@ -258,7 +258,12 @@
 
 <!--
     Main page structure for the "Guess That Song" lyrics game.
-    Includes navigation, start screen, game interface, and results.
+    Includes:
+      - Navigation bar at the top.
+      - Start screen (id="start-screen"): Welcome message and start button.
+      - Game screen (id="game-screen"): Displays current question, lyrics, options, score, progress bar, feedback, and next button.
+      - Results screen (id="results-screen"): Shows final score, message, and play again button.
+    Each screen is wrapped in a card for consistent styling and is shown/hidden as needed.
 -->
 <body>
 
@@ -276,53 +281,57 @@
             <p>Can you name the song from just a few lyrics?</p>
         </div>
 
-        <!-- Start Screen -->
-        <div class="card" id="start-screen">
-            <div class="start-screen">
-                <h2>Welcome to Guess That Song!</h2>
-                <p>You'll be shown a snippet of lyrics from a popular 2010s-2020s pop hit.<br>
-                Choose the correct song title from 4 options.<br>
-                10 rounds — how many can you get right?</p>
-                <button class="start-btn" onclick="startGame()">Let's Play!</button>
-            </div>
-        </div>
+<!-- Start Screen -->
+<div class="card" id="start-screen">
+        <button class="start-btn" id="start-btn">Let's Play!</button>
+        <h2>Welcome to Guess That Song!</h2>
+        <p>You'll be shown a snippet of lyrics from a popular 2010s-2020s pop hit.<br>
+        Choose the correct song title from 4 options.<br>
+        10 rounds — how many can you get right?</p>
+    </div>
+</div>
 
 <!-- Game Screen -->
 <div id="game-screen" style="display:none;">
-    <div class="progress-bar-container">
-        <div class="progress-bar" id="progress-bar"></div>
-    </div>
-    <div class="score-display" id="score-display" style="display:none;">Score: 0 / 1</div>
-
     <div class="card">
         <div class="question-number" id="question-number"></div>
-
         <div class="lyrics-box" id="lyrics"></div>
-
-        <div class="question-text">Choose the correct song:</div>
-
+        <div class="score-display" id="score-display"></div>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <div class="question-text" id="question-text">Which song is this lyric from?</div>
         <div class="options-grid" id="options"></div>
-
         <div class="feedback" id="feedback"></div>
-
         <button class="next-btn" id="next-btn" onclick="nextQuestion()">Next Question</button>
+    </div>
     </div>
 </div>
 
 <!-- Results Screen -->
 <div id="results-screen" style="display:none;">
+    <button class="restart-btn" id="restart-btn">Play Again</button>
     <div class="card results-container">
-        <h2>Game Over!</h2>
         <div class="final-score" id="final-score"></div>
         <div class="score-message" id="score-message"></div>
-        <button class="restart-btn" onclick="location.reload()">Play Again</button>
     </div>
-</div>
-
-
-        <script>
-</script>
+</body>
 <script>
+// Add event listeners after DOM is loaded
+document.addEventListener("DOMContentLoaded", function() {
+    const startBtn = document.getElementById("start-btn");
+    if (startBtn) startBtn.addEventListener("click", startGame);
+
+    const nextBtn = document.getElementById("next-btn");
+    if (nextBtn) nextBtn.addEventListener("click", nextQuestion);
+
+    const restartBtn = document.getElementById("restart-btn");
+    if (restartBtn) restartBtn.addEventListener("click", function() {
+        location.reload();
+    });
+});
+
+// QUESTIONS
 // QUESTIONS
 const questions = [
     {
@@ -349,11 +358,38 @@ const questions = [
         lyrics: "It's you, you're the one that I want",
         options: ["Cruel Summer", "Love Story", "Style", "Cardigan"],
         answer: 1
+    }, 
+    {
+        // NEW QUESTIONS 👇
+        lyrics: "Why you always in a mood? Messin' 'round, actin' brand new",
+        options: ["Mood", "Industry Baby", "Stay", "Good 4 U"],
+        answer: 0
+    },
+    {
+        lyrics: "I'm on top of the world, hey",
+        options: ["On Top of the World", "Believer", "Thunder", "High Hopes"],
+        answer: 0
+    },
+    {
+        lyrics: "I don't care when I'm with my baby, yeah",
+        options: ["I Don't Care", "Peaches", "Sorry", "Ghost"],
+        answer: 0
+    },
+    {
+        lyrics: "Baby, you're a firework, come on show 'em what you're worth",
+        options: ["Firework", "Roar", "Dark Horse", "Teenage Dream"],
+        answer: 0
+    },
+    {
+        lyrics: "I got my peaches out in Georgia",
+        options: ["Peaches", "Intentions", "Yummy", "Stay"],
+        answer: 0
     }
 ];
 
 let currentQuestion = 0;
 let score = 0;
+
 
 // START GAME
 function startGame() {
@@ -363,18 +399,17 @@ function startGame() {
     currentQuestion = 0;
     score = 0;
 
+    shuffleArray(questions); // Shuffle questions at the start
+
     loadQuestion();
 }
 
 // LOAD QUESTION
 function loadQuestion() {
     const q = questions[currentQuestion];
-
     document.getElementById("question-number").innerText =
         `Question ${currentQuestion + 1} of ${questions.length}`;
-
     document.getElementById("lyrics").innerText = `"${q.lyrics}"`;
-
     document.getElementById("score-display").innerText =
         `Score: ${score} / ${questions.length}`;
 
@@ -382,6 +417,7 @@ function loadQuestion() {
     optionsContainer.innerHTML = "";
 
     document.getElementById("feedback").innerText = "";
+    document.getElementById("feedback").className = "feedback";
     document.getElementById("next-btn").style.display = "none";
 
     q.options.forEach((option, index) => {
@@ -446,6 +482,8 @@ function showResults() {
     document.getElementById("score-message").innerText =
         (score === questions.length ? "Perfect score! 🎉" : "Nice try! Play again?");
 }
+</script>
+</html>
 </script>
 </body>
 </html>
