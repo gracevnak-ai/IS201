@@ -35,9 +35,7 @@
             transition: color 0.2s;
         }
 
-        .topnav a:hover {
-            color: #ffffff;
-        }
+        .topnav a:hover { color: #ffffff; }
 
         .game-container {
             max-width: 750px;
@@ -159,9 +157,7 @@
             color: white;
         }
 
-        .option-btn:disabled {
-            cursor: not-allowed;
-        }
+        .option-btn:disabled { cursor: not-allowed; }
 
         .feedback {
             text-align: center;
@@ -171,16 +167,11 @@
             font-weight: bold;
         }
 
-        .feedback.correct {
-            color: #4caf50;
-        }
-
-        .feedback.wrong {
-            color: #f44336;
-        }
+        .feedback.correct { color: #4caf50; }
+        .feedback.wrong { color: #f44336; }
 
         .next-btn {
-            display: block;
+            display: none;
             width: 100%;
             background-color: #a8d8ea;
             color: #1a1a2e;
@@ -193,17 +184,12 @@
             cursor: pointer;
             transition: background-color 0.2s;
             margin-top: 15px;
-            display: none;
         }
 
-        .next-btn:hover {
-            background-color: #ffffff;
-        }
+        .next-btn:hover { background-color: #ffffff; }
 
-        /* Results Screen */
         .results-container {
             text-align: center;
-            display: none;
         }
 
         .results-container h2 {
@@ -237,13 +223,9 @@
             transition: background-color 0.2s;
         }
 
-        .restart-btn:hover {
-            background-color: #ffffff;
-        }
+        .restart-btn:hover { background-color: #ffffff; }
 
-        .start-screen {
-            text-align: center;
-        }
+        .start-screen { text-align: center; }
 
         .start-screen h2 {
             font-size: 1.5rem;
@@ -270,15 +252,12 @@
             transition: background-color 0.2s;
         }
 
-        .start-btn:hover {
-            background-color: #ffffff;
-        }
+        .start-btn:hover { background-color: #ffffff; }
     </style>
 </head>
 
 <body>
 
-    <!-- Navigation -->
     <div class="topnav">
         <a href="index.html">Home</a>
         <a href="resume.html">Résumé</a>
@@ -309,16 +288,3 @@
             <div class="progress-bar-container">
                 <div class="progress-bar" id="progress-bar"></div>
             </div>
-            <div class="score-display" id="score-display">Score: 0 / 10</div>
-            <div class="card">
-                <div class="question-number" id="question-number">Question 1 of 10</div>
-                <div class="lyrics-box" id="lyrics-box"></div>
-                <div class="question-text">Which song are these lyrics from?</div>
-                <div class="options-grid" id="options-grid"></div>
-                <div class="feedback" id="feedback"></div>
-                <button class="next-btn" id="next-btn" onclick="nextQuestion()">Next →</button>
-            </div>
-        </div>
-
-        <!-- Results Screen -->
-        <div class="card" id="results-screen" style="display:none;">
